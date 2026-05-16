@@ -2,7 +2,6 @@ import getpass
 import logging
 import os
 
-from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
@@ -21,8 +20,6 @@ def setup_logging() -> None:
 
 
 def get_bot_token() -> str:
-    load_dotenv()
-
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     if token:
         return token.strip()
