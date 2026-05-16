@@ -1,3 +1,4 @@
+import getpass
 import logging
 import os
 
@@ -17,6 +18,20 @@ def setup_logging() -> None:
             logging.StreamHandler(),
         ],
     )
+
+
+def get_bot_token() -> str:
+    load_dotenv()
+
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    if token:
+        return token.strip()
+
+    token = getpass.getpass("Paste Telegram bot token: ").strip()
+    if not token:
+        raise RuntimeError("Telegram bot token is empty.")
+
+    return token
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -39,13 +54,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 def main() -> None:
     setup_logging()
-    load_dotenv()
-
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    if not token:
-        raise RuntimeError(
-            "TELEGRAM_BOT_TOKEN is missing. Create local .env file first."
-        )
+    token = get_bot_token()
 
     app = Application.builder().token(token).build()
 
