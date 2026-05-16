@@ -1,8 +1,17 @@
 # AGENT3471_bot
-Done! Congratulations on your new bot. You will find it at t.me/AGENT3471_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
 
-Use this token to access the HTTP API:
-8652281088:AAG9mFNpx5Ri52b3Cxtl3-ovsYEAxvw0vPc
-Keep your token secure and store it safely, it can be used by anyone to control your bot.
+Test Telegram bot: https://t.me/AGENT3471_bot
 
-For a description of the Bot API, see this page: https://core.telegram.org/bots/api
+## Environment variables
+
+Create a local `.env` file:
+
+```env
+TELEGRAM_BOT_TOKEN=your_token_here
+```
+
+Do not commit real tokens, API keys, passwords, or secrets to GitHub.
+
+## Telegram Bot API
+
+https://core.telegram.org/bots/api
