@@ -1,3 +1,4 @@
+import asyncio
 import getpass
 import logging
 import os
@@ -17,6 +18,14 @@ def setup_logging() -> None:
             logging.StreamHandler(),
         ],
     )
+
+
+def ensure_event_loop() -> None:
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
 
 
 def get_bot_token() -> str:
@@ -51,6 +60,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 def main() -> None:
     setup_logging()
+    ensure_event_loop()
     token = get_bot_token()
 
     app = Application.builder().token(token).build()
